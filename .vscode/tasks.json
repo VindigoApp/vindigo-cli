@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build binaries",
+			"type": "shell",
+			"command": "bash build.sh build",
+			"group": "build",
+			"problemMatcher": [
+				"$go"
+			]
+		},
+		{
+			"label": "Clean binaries",
+			"type": "shell",
+			"command": "bash build.sh clean",
+			"problemMatcher": []
+		},
+		{
+			"label": "Tidy imports",
+			"type": "shell",
+			"command": "go mod tidy",
+			"problemMatcher": []
+		}
+	]
+}
