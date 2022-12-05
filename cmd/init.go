@@ -31,6 +31,8 @@ func HandleInit(c *cli.Context) error {
 		return nil
 	}
 
+	fmt.Println(utils.Info + "Using " + gchalk.Cyan(pkgMngr) + " as package manager")
+
 	// Use default folder name
 	if folderName == "" {
 		folderName = "vindigo"
@@ -65,7 +67,7 @@ func HandleInit(c *cli.Context) error {
 	}
 
 	// Create package json
-	pkgJson, err := utils.Resources.ReadFile("package.json")
+	pkgJson, err := utils.Resources.ReadFile("resources/package.json")
 
 	if err != nil {
 		fmt.Println(utils.Error + "Failed to read package.json")

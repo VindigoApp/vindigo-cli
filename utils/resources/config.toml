@@ -1,5 +1,5 @@
 # Vindigo Server configuration file.
-# Generated on Sun Nov 27 2022 13:02:35 GMT+0100 (Central European Standard Time).
+# Generated on %DATE%
 # 
 # This configuration file is used to customize and configure
 # your installation of Vindigo. Please resort to the upgrade
@@ -8,42 +8,66 @@
 # For more information see https://github.com/VindigoApp/vindigo
 
 [general]
-url = "http://localhost:8085/"
-hostname = "127.0.0.1"
-port = 8085
-secure = true
-reverse_proxy = false
-maintenance = false
-check_version = true
-name = ""
-debug = false
+url = "%URL%"
+language = "en-US"
+enable_debug = false
 
 [authentication]
-secret = "c10e94986b788ab0516efba1f4e5523a"
-anonymous_access = false
-registrations = false
+allow_anonymous_access = false
+allow_registrations = true
 verify_emails = true
-providers = []
+session_duration = "90d"
 
-[database]
-driver = "mysql"
-database = "vindigo"
+[server]
+port = %PORT%
 hostname = "127.0.0.1"
-username = "root"
-password = ""
-port = 3306
-
-[smtp]
-enabled = false
-domain = ""
-port = 25
-email = "no-reply@example.com"
-password = ""
-sender_name = ""
+check_version = true
+reverse_proxy = false
+insecure = false
 
 [client]
-palette = [
-	"#14A7F4", "#6c5ce7", "#10ac84",
-	"#ee5253", "#ffc312", "#f28524",
-	"#f2416b", "#525af7", "#A3CB38",
-]
+brand_logo = ""
+display_name = ""
+default_theme = "light"
+color_palette = [ "#14A7F4", "#6c5ce7", "#10ac84", "#ee5253", "#ffc312", "#f28524", "#f2416b", "#525af7", "#A3CB38" ]
+use_gravatar = true
+show_branding = true
+
+[client.sitemeta]
+title = "Vindigo Task Planner"
+theme_color = "#23C7FF"
+description = "The ultimate planning tool for your tasks"
+author_name = "Starlane Studios"
+keywords = ""
+image = ""
+
+[client.format]
+simple_date_fmt = "DD/MM/YYYY"
+text_date_fmt = "DD MMMM YYYY"
+time_fmt = "HH:mm"
+
+[database]
+driver = "%DB_DRIVER%"
+database = "%DB_NAME%"
+hostname = "%DB_HOST%"
+username = "%DB_USER%"
+password = "%DB_PASSWORD%"
+port = %DB_PORT%
+
+[storage]
+allow_scaling = true
+compression_rate = 0.8
+max_file_size = 10485760
+
+[mailer]
+enabled = false
+smtp_domain = ""
+smtp_port = 25
+smtp_email = ""
+smtp_password = ""
+sender_name = "%MAIL_SENDER%"
+subject_prefix = ""
+
+[metrics]
+enabled = false
+token = ""
