@@ -1,0 +1,49 @@
+# Vindigo Server configuration file.
+# Generated on Sun Nov 27 2022 13:02:35 GMT+0100 (Central European Standard Time).
+# 
+# This configuration file is used to customize and configure
+# your installation of Vindigo. Please resort to the upgrade
+# guide on how to keep your configuration up to date.
+#
+# For more information see https://github.com/VindigoApp/vindigo
+
+[general]
+url = "http://localhost:8085/"
+hostname = "127.0.0.1"
+port = 8085
+secure = true
+reverse_proxy = false
+maintenance = false
+check_version = true
+name = ""
+debug = false
+
+[authentication]
+secret = "c10e94986b788ab0516efba1f4e5523a"
+anonymous_access = false
+registrations = false
+verify_emails = true
+providers = []
+
+[database]
+driver = "mysql"
+database = "vindigo"
+hostname = "127.0.0.1"
+username = "root"
+password = ""
+port = 3306
+
+[smtp]
+enabled = false
+domain = ""
+port = 25
+email = "no-reply@example.com"
+password = ""
+sender_name = ""
+
+[client]
+palette = [
+	"#14A7F4", "#6c5ce7", "#10ac84",
+	"#ee5253", "#ffc312", "#f28524",
+	"#f2416b", "#525af7", "#A3CB38",
+]

@@ -1,5 +1,12 @@
 package utils
 
+import (
+	"embed"
+)
+
+//go:embed resources
+var Resources embed.FS
+
 var (
 	Production string
 	Version    string

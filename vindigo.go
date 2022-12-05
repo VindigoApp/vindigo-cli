@@ -1,10 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"context"
 	"fmt"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/VindigoApp/vindigo-cli/cmd"
 	"github.com/VindigoApp/vindigo-cli/utils"
@@ -62,17 +64,42 @@ func main() {
 			{
 				Name:   "status",
 				Usage:  "Stop the running server",
-				Action: cmd.HandleStop,
+				Action: cmd.HandleStatus,
 			},
 			{
-				Name:   "init",
-				Usage:  "Create a new Vindigo instance",
-				Action: cmd.HandleStop,
+				Name:      "init",
+				Usage:     "Create a new Vindigo instance",
+				ArgsUsage: "[name]",
+				Action:    cmd.HandleInit,
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:    "package-manager",
+						Aliases: []string{"pm"},
+						Value:   "npm",
+						Usage:   "Which package manager to use",
+					},
+					&cli.StringFlag{
+						Name:    "version",
+						Aliases: []string{"v"},
+						Usage:   "The version of vindigo to install",
+					},
+				},
 			},
 		},
 	}
 
-	err := app.RunContext(ctx, os.Args)
+	input := os.Args
+
+	if !utils.IsProduction() {
+		fmt.Print("Enter command: ")
+
+		reader := bufio.NewReader(os.Stdin)
+		text, _ := reader.ReadString('\n')
+		trim := strings.TrimSpace(text)
+		input = append(os.Args[:1], strings.Split(trim, " ")...)
+	}
+
+	err := app.RunContext(ctx, input)
 
 	if err != nil {
 		log.Fatalln("Failed to run the application", err)
